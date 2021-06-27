@@ -30,19 +30,19 @@
                     </div>
         		</div>
                 <?php
-			    //如果url有$do參數 > 用$_GET存取$do參數  如果沒有則賦值"main"
+			    //插入分頁
 				$do = (isset($_GET["do"])) ? $_GET["do"] : "main";
-				switch ($do){
-					case "login":
-						include('../web01/front/login.php');
-					break;
-					case "news":
-						include('../web01/front/news.php');
-					break;
-					default:
-					    include('../web01/front/main.php');
-
+				$do = "../web01/front/".$do.".php";
+                //先判斷檔案是否存在
+				if (file_exists($do)){
+					include($do);
+				} else {
+					include("../web01/front/main.php");
 				}
+
+
+				
+				
 
 				?>
                 	
