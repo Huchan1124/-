@@ -31,20 +31,21 @@ class DB {
             if (is_array($arg[0])){
                 
                 echo "處理陣列";
-            } 
-            
-            elseif(isset($arg[1])) { //判斷$arg是否有第二個元素
-                 //$arg為字串，因此接在$sql語法後面
-                $sql = $sql . $arg[1];
-                echo $sql;
-                
             } else {
                 //$arg為字串，因此接在$sql語法後面
                $sql =  $sql . $arg[0];
                echo $sql; 
-            }  
+            };
 
         }
+
+         //判斷$arg是否有第二個元素
+         if (isset($arg[1])){
+             // 接續第一個$sql 將字串加在後面
+            $sql = $sql . $arg[1];
+            echo $sql;
+        }
+
 
         //執行sql語法 並回傳結果(陣列形式)
         return $this->db_connection->query($sql)->fetchAll();
