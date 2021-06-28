@@ -18,20 +18,45 @@ class DB {
     }
 
     public function all(...$arg){
-        //sql語法
-        $sql = "SELECT * FROM $this->table";
+        //sql語法 記得$sql語法後面要留空格 避免之後字串相連
+        $sql = "SELECT * FROM $this->table ";
+
+        //$arg傳進來為陣列形式
+        print_r($arg); 
+
+        //$arg=[]，$arg主要是接在$sql語法後，增加搜尋條件。傳進來的資料可能是 [陣列] ,[SQL字串] , [陣列, SQL字串]
+        //如果傳進來的值有東西，再繼續判斷(**isset這行好像可以不用加，因為原本透過參數傳進來的本身就會有東西?試過刪掉不影響)
+        if (isset($arg[0])){
+            //判斷$arg是否為陣列
+            if (is_array($arg[0])){
+                
+                echo "處理陣列";
+            } else {
+                //$arg為字串，因此接在$sql語法後面
+               $sql =  $sql . $arg[0];
+               echo $sql; 
+            }
+
+
+
+
+        }
+
+
         //執行sql語法 並回傳結果(陣列形式)
         return $this->db_connection->query($sql)->fetchAll();
 
     }
 }
 
-//new一個DB，取出test_score資料表
-$db = new DB("test_score");
+//new一個DB，取出test_score資料表 class首字通常大寫
+$Db = new DB("test_score");
 
 echo "<pre>";
 //print_r() 輸出陣列的語法
-print_r($db->all());
+print_r($Db->all(" WHERE `name` = '李小新' "));
+
+print_r($Db->all(" ORDER BY `id` DESC "));
 echo "</pre>";
 
 
