@@ -29,8 +29,24 @@ class DB {
         if (isset($arg[0])){
             //判斷$arg是否為陣列
             if (is_array($arg[0])){
-                
-                echo "處理陣列";
+                //要轉成的形式 `col1` = "value1" && `col2` = "value2" 
+                //1. 使用foreach 將 陣列一一輸出
+                foreach($arg[0] as $key => $value){
+                //2. 要將傳進來的陣列參數，轉成字串形式 我們可以用 sprintf(format,arg1,arg2,arg++)
+                    $tmp[] = sprintf("`%s` = '%s'",$key,$value);
+                }
+                print_r($tmp);
+
+                //3. 用&&連接兩個字串，可以使用implode(separator,array) 將陣列用特定字符連接
+                //記得" && " 要加空白，不然字串會連在一起
+                print_r(implode(" && ",$tmp));
+
+                //4. 連接sql語法與implode，完成我們具有條件限定的sql語法
+                //記得要加" WHERE " ，SQL語法才是正確的，不要忘記空白!
+                $sql = $sql ." WHERE ". implode(" && ",$tmp);
+
+                echo $sql;
+              
             } else {
                 //$arg為字串，因此接在$sql語法後面
                $sql =  $sql . $arg[0];
@@ -57,12 +73,13 @@ class DB {
 $Db = new DB("test_score");
 
 echo "<pre>";
+print_r($Db->all(['math' => '100' ,'chinese' => '100']));
 //print_r() 輸出陣列的語法
-print_r($Db->all(" WHERE `name` = '李小新' "));
+// print_r($Db->all(" WHERE `name` = '李小新' "));
 
-print_r($Db->all(" ORDER BY `id` DESC "));
+// print_r($Db->all(" ORDER BY `id` DESC "));
 
-print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
+// print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
 echo "</pre>";
 
 
