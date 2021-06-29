@@ -45,12 +45,12 @@ class DB {
                 //記得要加" WHERE " ，SQL語法才是正確的，不要忘記空白!
                 $sql = $sql ." WHERE ". implode(" && ",$tmp);
 
-                echo $sql;
+                // echo $sql;
               
             } else {
                 //$arg為字串，因此接在$sql語法後面
                $sql =  $sql . $arg[0];
-               echo $sql; 
+            //    echo $sql; 
             };
 
         }
@@ -59,12 +59,48 @@ class DB {
          if (isset($arg[1])){
              // 接續第一個$sql 將字串加在後面
             $sql = $sql . $arg[1];
-            echo $sql;
+            // echo $sql;
         }
 
 
         //執行sql語法 並回傳結果(陣列形式)
         return $this->db_connection->query($sql)->fetchAll();
+
+    }
+
+
+    public function count(...$arg){
+        //count()聚合函數 計算資料總筆數
+        $sql = "SELECT COUNT(*) FROM $this->table ";
+
+        //判斷傳進來的參數形式 [陣列] [SQL字串] [陣列,SQL字串]
+        //判斷$arg是否存在，存在才繼續執行
+        if (isset($arg[0])){
+            if(is_array($arg[0])){
+                //傳進來的參數為陣列形式，使用forEach一一輸出
+
+                foreach($arg[0] as $key=>$value){
+                    //用$tmp變數 將新增的陣列值存起來
+                    //傳進來的參數為陣列形式，我們必須把它轉為字串。語法為sprintf()
+                   $tmp[] = sprintf("`%s` = '%s'",$key,$value);
+                }
+                 
+                //利用implode() 連接特殊自符與陣列值
+                $sql = $sql ." WHERE ".  implode(" && ",$tmp);
+
+            } else {
+                //回傳SQL字串
+                $sql = $sql . $arg[0];
+            };
+        };
+
+        if (isset($arg[1])){
+            $sql = $sql . $arg[1];
+        }
+
+        /*與all()不同的地方 fetchALL() 改成 fetchColumn() ，
+        差別在於前者回傳的是陣列形式，後者直接回傳值，在後續解題時取值較為方便。*/
+        return $this->db_connection->query($sql)->fetchColumn();
 
     }
 }
@@ -73,13 +109,17 @@ class DB {
 $Db = new DB("test_score");
 
 echo "<pre>";
-print_r($Db->all(['math' => '100' ,'chinese' => '100']));
+// print_r($Db->all(['math' => '100' ,'chinese' => '100']));
 //print_r() 輸出陣列的語法
+// print_r($Db->all());
 // print_r($Db->all(" WHERE `name` = '李小新' "));
 
 // print_r($Db->all(" ORDER BY `id` DESC "));
 
 // print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
+
+print_r($Db->count());
+
 echo "</pre>";
 
 
