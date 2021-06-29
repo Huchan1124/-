@@ -103,13 +103,37 @@ class DB {
         return $this->db_connection->query($sql)->fetchColumn();
 
     }
+     
+    //取出單筆資料(特定id[字串] 或 特定條件 [陣列])
+    public function find($id){
+        $sql = "SELECT * FROM $this->table ";
+    // 先判斷傳進來的參數是否為陣列 陣列? 回傳陣列處理 : 回傳字串
+      if(is_array($id)){
+          foreach($id as $key=>$value){
+              //陣列轉字串
+              $tmp[]= printf("`%s` = '%s'",$key,$value);
+          }
+          //&&接字串 注意!!記得加WHERE
+
+          $sql= $sql." WHERE ".implode(" && ",$tmp);
+
+      } else {
+          //回傳字串 注意!!記得加WHERE
+          $sql= $sql." WHERE `id` = '$id' ";
+
+      }
+      
+        //  fetch 取得單筆資料  PDO::FETCH_ASSOC回傳的結果形式為 "欄位名"=>"值"
+       return $this->db_connection->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+    }
 }
 
 //new一個DB，取出test_score資料表 class首字通常大寫
 $Db = new DB("test_score");
 
 echo "<pre>";
-// print_r($Db->all(['math' => '100' ,'chinese' => '100']));
+// print_r($Db->find(['math' => '100' ,'chinese' => '100']));
 //print_r() 輸出陣列的語法
 // print_r($Db->all());
 // print_r($Db->all(" WHERE `name` = '李小新' "));
@@ -118,7 +142,7 @@ echo "<pre>";
 
 // print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
 
-print_r($Db->count());
+print_r($Db->find(3));
 
 echo "</pre>";
 
