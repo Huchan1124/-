@@ -107,7 +107,7 @@ class DB {
     //取出單筆資料(特定id[字串] 或 特定條件 [陣列])
     public function find($id){
         $sql = "SELECT * FROM $this->table ";
-    // 先判斷傳進來的參數是否為陣列 陣列? 回傳陣列處理 : 回傳字串
+       // 先判斷傳進來的參數是否為陣列 陣列? 回傳陣列處理 : 回傳字串
       if(is_array($id)){
           foreach($id as $key=>$value){
               //陣列轉字串
@@ -127,6 +127,33 @@ class DB {
        return $this->db_connection->query($sql)->fetch(PDO::FETCH_ASSOC);
 
     }
+
+    //刪除資料(特定id[字串] 或 特定條件 [陣列])
+    public function del($id){
+        $sql = "DELETE FROM $this->table ";
+
+        if (is_array($id)){
+            //陣列輸出
+            foreach($id as $key=>$value){
+                //陣列轉字串
+                $tmp[]= printf("`%s` = '%s'",$key,$value);
+                //&&連接
+            } 
+            $sql = $sql ." WHERE ".implode(" && ",$tmp);
+
+        } else {
+            //傳入字串
+            $sql = $sql ." WHERE `id` = '$id'";
+        }
+
+        //因為刪除資料不需要回傳結果，用fetch回傳也只會得到空陣列，因此在此使用exec() 表示執行 回傳數字>=1 表示成功 失敗=0
+        return $this->db_connection->exec($sql);
+
+    }
+
+
+
+
 }
 
 //new一個DB，取出test_score資料表 class首字通常大寫
@@ -142,7 +169,7 @@ echo "<pre>";
 
 // print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
 
-print_r($Db->find(3));
+print_r($Db->del(4));
 
 echo "</pre>";
 
