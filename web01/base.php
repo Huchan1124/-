@@ -33,6 +33,7 @@ $hStr=[
     "ad"=>"動態文字廣告",
     "mvim"=>"動畫圖片",
     "total"=>"進站總人數",
+    "bottom"=>"頁尾版權資料",
     "image"=>"校園映像資料",
     "news"=>"最新消息資料",
     "admin"=>"管理者帳號",
@@ -226,6 +227,7 @@ function to($url){
 
 //new一個DB，取出title資料表 class首字通常大寫
 $Total = new DB("total");
+$Bottom = new DB("bottom");
 
 
 ?>
