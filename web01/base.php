@@ -1,4 +1,43 @@
 <?php
+//其他共用變數設定
+session_start();
+date_default_timezone_set("Asia/Taipei");
+//設定後台的標題文字
+$ts=[
+    "title"=>"網站標題管理",
+    "ad"=>"動態文字廣告管理",
+    "mvim"=>"動畫圖片管理",
+    "image"=>"校園映像資料管理",
+    "total"=>"進站總人數管理",
+    "bottom"=>"頁尾版權資料管理",
+    "news"=>"最新消息資料管理",
+    "admin"=>"管理者帳號管理",
+    "menu"=>"選單管理",
+];
+
+//廣告區文字
+$adStr=[
+    "title"=>"新增網站標題",
+    "ad"=>"新增動態文字廣告",
+    "mvim"=>"新增動畫圖片",
+    "image"=>"新增校園映像資料",
+    "news"=>"新增最新消息資料",
+    "admin"=>"新增管理者帳號",
+    "menu"=>"新增選單",
+
+];
+
+//標題文字
+$hStr=[
+    "title"=>"網站標題",
+    "ad"=>"動態文字廣告",
+    "mvim"=>"動畫圖片",
+    "image"=>"校園映像資料",
+    "news"=>"最新消息資料",
+    "admin"=>"管理者帳號",
+    "menu"=>"選單",
+];
+
 
 class DB {
     //db基本設定
@@ -178,9 +217,6 @@ class DB {
         header("location:".$url);
     }
 
- 
-
-
 
 
 }
@@ -188,7 +224,7 @@ class DB {
 //new一個DB，取出test_score資料表 class首字通常大寫
 $Db = new DB("test_score");
 
-echo "<pre>";
+// echo "<pre>";
 // print_r($Db->find(['math' => '100' ,'chinese' => '100']));
 //print_r() 輸出陣列的語法
 // print_r($Db->all());
@@ -199,16 +235,16 @@ echo "<pre>";
 // print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
 
 // print_r($Db->del(4));
-print_r($Db->save([
-    'name' => '李美美',
-    'math' => '90',
-    'english' => '90',
-    'chinese' => '90'
+// print_r($Db->save([
+//     'name' => '李美美',
+//     'math' => '90',
+//     'english' => '90',
+//     'chinese' => '90'
 
-]));
+// ]));
 
 
-echo "</pre>";
+// echo "</pre>";
 
 
 
