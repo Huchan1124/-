@@ -174,6 +174,12 @@ class DB {
 
     }
 
+    function to($url){
+        header("location:".$url);
+    }
+
+ 
+
 
 
 
