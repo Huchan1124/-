@@ -32,6 +32,7 @@ $hStr=[
     "title"=>"網站標題",
     "ad"=>"動態文字廣告",
     "mvim"=>"動畫圖片",
+    "total"=>"進站總人數",
     "image"=>"校園映像資料",
     "news"=>"最新消息資料",
     "admin"=>"管理者帳號",
@@ -41,7 +42,7 @@ $hStr=[
 
 class DB {
     //db基本設定
-    private $dsn = "mysql:host=localhost;charset=utf8;dbname=db_test";
+    private $dsn = "mysql:host=localhost;charset=utf8;dbname=db01";
     private $db_username = "root";
     private $db_password = "";
     private $table;
@@ -213,39 +214,18 @@ class DB {
 
     }
 
-    function to($url){
-        header("location:".$url);
-    }
-
 
 
 }
 
-//new一個DB，取出test_score資料表 class首字通常大寫
-$Db = new DB("test_score");
 
-// echo "<pre>";
-// print_r($Db->find(['math' => '100' ,'chinese' => '100']));
-//print_r() 輸出陣列的語法
-// print_r($Db->all());
-// print_r($Db->all(" WHERE `name` = '李小新' "));
+//注意 to()函式不要放到Class裡面
+function to($url){
+    header("location:".$url);
+}
 
-// print_r($Db->all(" ORDER BY `id` DESC "));
-
-// print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
-
-// print_r($Db->del(4));
-// print_r($Db->save([
-//     'name' => '李美美',
-//     'math' => '90',
-//     'english' => '90',
-//     'chinese' => '90'
-
-// ]));
-
-
-// echo "</pre>";
-
+//new一個DB，取出title資料表 class首字通常大寫
+$Total = new DB("total");
 
 
 ?>
