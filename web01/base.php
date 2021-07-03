@@ -111,7 +111,7 @@ class DB {
       if(is_array($id)){
           foreach($id as $key=>$value){
               //陣列轉字串
-              $tmp[]= printf("`%s` = '%s'",$key,$value);
+              $tmp[]= sprintf("`%s` = '%s'",$key,$value);
           }
           //&&接字串 注意!!記得加WHERE
 
@@ -136,18 +136,41 @@ class DB {
             //陣列輸出
             foreach($id as $key=>$value){
                 //陣列轉字串
-                $tmp[]= printf("`%s` = '%s'",$key,$value);
+                $tmp[]= sprintf("`%s` = '%s'",$key,$value);
                 //&&連接
             } 
             $sql = $sql ." WHERE ".implode(" && ",$tmp);
 
         } else {
             //傳入字串
-            $sql = $sql ." WHERE `id` = '$id'";
+            $sql = $sql ." WHERE `id` = '$id' ";
         }
 
-        //因為刪除資料不需要回傳結果，用fetch回傳也只會得到空陣列，因此在此使用exec() 表示執行 回傳數字>=1 表示成功 失敗=0
+        //因為刪除資料不需要回傳結果，用fetch回傳也只會得到空陣列，因此在此使用exec() 表示執行 回傳數字>0 表示成功 回傳0 or NULL 表示失敗
         return $this->db_connection->exec($sql);
+
+    }
+
+    //新增、修改資料 如果有傳入的陣列有 id? update into : insert
+    public function save($arr){ 
+        if(isset($arr['id'])){
+          //update 
+          foreach($arr as $key =>$value){
+              $tmp[]= sprintf("`%s` = '%s' ",$key,$value);
+          }
+          //用, 串接
+          $sql="UPDATE $this->table SET ".implode(',',$tmp)." WHERE `id`='{$arr['id']}'";
+          echo $sql;
+
+
+        } else {
+            //insert
+            $sql="INSERT INTO $this->table (`".implode("`,`",array_keys($arr))."`) VALUES('".implode("','",$arr)."')";
+            echo $sql;
+        }
+
+        return $this->db_connection->exec($sql);
+
 
     }
 
@@ -169,7 +192,15 @@ echo "<pre>";
 
 // print_r($Db->all(" WHERE `math` = '100' "," ORDER BY `id` DESC "));
 
-print_r($Db->del(4));
+// print_r($Db->del(4));
+print_r($Db->save([
+    'name' => '李美美',
+    'math' => '90',
+    'english' => '90',
+    'chinese' => '90'
+
+]));
+
 
 echo "</pre>";
 
