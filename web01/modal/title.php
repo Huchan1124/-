@@ -8,7 +8,7 @@ include_once "../base.php";
 <hr>
 <!-- 因為要上傳檔案，要傳比較大的檔案，資料量大的建議使用post -->
 <!-- 另外絕對要記得加上 enctype 才能上傳檔案 multipart/form-data(多媒體資料格式/以表單方式傳送)-->
-<form action="../api/add.php" method="post" enctype="multipart/form-data">
+<form action="api/add.php" method="post" enctype="multipart/form-data">
 <table style="margin: 0 auto;">
     <tr>
         <td><?= $hStr['title'];?></td>
@@ -22,5 +22,6 @@ include_once "../base.php";
 <div class="cent">
     <input type="submit" value="新增" >
     <input type="reset" value="重置">
+    <input type="hidden" name="table" value="title">
 </div>
 </form>

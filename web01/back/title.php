@@ -4,8 +4,44 @@
         <form method="post" target="back" action="api/edit.php">
     <table width="100%">
     	<tbody><tr class="yel">
-        	<td width="45%">網站標題</td><td width="23%">替代文字</td><td width="7%">顯示</td><td width="7%">刪除</td><td></td>
-                    </tr>
+        	<td width="45%">網站標題</td>
+            <td width="23%">替代文字</td>
+            <td width="7%">顯示</td>
+            <td width="7%">刪除</td><td></td>
+            </tr>
+
+            <?php 
+            $rows = $Title->all();
+            foreach ($rows as $key=>$value) {
+                ?>
+
+            <tr >
+        	<td width="45%">
+                <?php 
+                // echo "<pre>";
+                // print_r($value); 
+                //用dd看一下$value的陣列
+                ?>
+                <img src="img/<?=$value['img'];?>" style="width:300px;height:30px;" alt="">
+            </td>
+            <td width="23%">
+                <input type="text" name="text" value="<?=$value['text']?>">
+            </td>
+            <td width="7%">
+                <input type="radio" name="sh" value="<?=$value['id']?>">
+            </td>
+            <td width="7%">
+                <!-- 因為checkbox是多選所以是陣列形式 -->
+                <input type="checkbox" name="del[]" id="<?=$value['id']?>">
+            </td><td></td>
+            </tr>
+             <?php
+            }
+             ?>
+
+
+
+
     </tbody></table>
            <table style="margin-top:40px; width:70%;">
      <tbody><tr>

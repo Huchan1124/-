@@ -63,7 +63,7 @@ class DB {
         $sql = "SELECT * FROM $this->table ";
 
         //$arg傳進來為陣列形式
-        print_r($arg); 
+        // print_r($arg); 
 
         //$arg=[]，$arg主要是接在$sql語法後，增加搜尋條件。傳進來的資料可能是 [陣列] ,[SQL字串] , [陣列, SQL字串]
         //如果傳進來的值有東西，再繼續判斷(**isset這行好像可以不用加，因為原本透過參數傳進來的本身就會有東西?試過刪掉不影響)
@@ -76,11 +76,11 @@ class DB {
                 //2. 要將傳進來的陣列參數，轉成字串形式 我們可以用 sprintf(format,arg1,arg2,arg++)
                     $tmp[] = sprintf("`%s` = '%s'",$key,$value);
                 }
-                print_r($tmp);
+                // print_r($tmp);
 
                 //3. 用&&連接兩個字串，可以使用implode(separator,array) 將陣列用特定字符連接
                 //記得" && " 要加空白，不然字串會連在一起
-                print_r(implode(" && ",$tmp));
+                // print_r(implode(" && ",$tmp));
 
                 //4. 連接sql語法與implode，完成我們具有條件限定的sql語法
                 //記得要加" WHERE " ，SQL語法才是正確的，不要忘記空白!
@@ -228,6 +228,7 @@ function to($url){
 //new一個DB，取出title資料表 class首字通常大寫
 $Total = new DB("total");
 $Bottom = new DB("bottom");
+$Title = new DB("title");
 
 
 ?>
