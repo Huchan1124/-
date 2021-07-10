@@ -17,12 +17,8 @@
 
             <tr >
         	<td width="45%">
-                <?php 
-                // echo "<pre>";
-                // print_r($value); 
-                //用dd看一下$value的陣列
-                ?>
-                <img src="img/<?=$value['img'];?>" style="width:300px;height:30px;" alt="">
+                <!-- 記得要確認src的路徑位置  -->
+                <img src="./img2/<?=$value['img'];?>" style="width:300px;height:30px;" alt="">
             </td>
             <td width="23%">
                 <input type="text" name="text" value="<?=$value['text']?>">
@@ -33,12 +29,21 @@
             <td width="7%">
                 <!-- 因為checkbox是多選所以是陣列形式 -->
                 <input type="checkbox" name="del[]" id="<?=$value['id']?>">
-            </td><td></td>
+            </td>
+            <td>
+                <input type="button" value="更新圖片">
+            </td>
             </tr>
              <?php
             }
              ?>
 
+
+<?php 
+                // echo "<pre>";
+                // print_r($value); 
+                //用dd看一下$value的陣列
+                ?>
 
 
 
