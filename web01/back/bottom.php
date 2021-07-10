@@ -1,5 +1,5 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-         <p class="t cent botli">進站總人數管理</p>
+         <p class="t cent botli"><?=$hStr['bottom']?></p>
          <!-- post 導向 api/edit_total.php 注意寫法api前不用再加/-->
     <form method="post"  action="api/edit_bottom.php">
     <table width="50%" style="margin:auto">
