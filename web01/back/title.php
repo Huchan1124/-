@@ -1,7 +1,7 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
                                                             <!--標題變數  -->
                                     <p class="t cent botli"><?=$ts[$do];?></p>
-        <form method="post" target="back" action="api/edit.php">
+        <form method="post" action="./api/edit.php">
     <table width="100%">
     	<tbody><tr class="yel">
         	<td width="45%">網站標題</td>
@@ -14,6 +14,11 @@
             $rows = $Title->all();
             foreach ($rows as $key=>$value) {
                 ?>
+                <?php 
+                // echo "<pre>";
+                // print_r($value); 
+                //用dd看一下$value的陣列
+                ?>
 
             <tr >
         	<td width="45%">
@@ -21,7 +26,8 @@
                 <img src="./img2/<?=$value['img'];?>" style="width:300px;height:30px;" alt="">
             </td>
             <td width="23%">
-                <input type="text" name="text" value="<?=$value['text']?>">
+                <!-- text[] 我們要儲存多筆資料 所以用陣列儲存 -->
+                <input type="text" name="text[]" value="<?=$value['text']?>">
             </td>
             <td width="7%">
                 <input type="radio" name="sh" value="<?=$value['id']?>">
@@ -33,19 +39,11 @@
             <td>
                 <input type="button" value="更新圖片">
             </td>
+            <input type="hidden" name="id[]" value="<?=$value['id'];?>">
             </tr>
              <?php
             }
              ?>
-
-
-<?php 
-                // echo "<pre>";
-                // print_r($value); 
-                //用dd看一下$value的陣列
-                ?>
-
-
 
     </tbody></table>
            <table style="margin-top:40px; width:70%;">
