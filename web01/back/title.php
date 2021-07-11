@@ -30,11 +30,11 @@
                 <input type="text" name="text[]" value="<?=$value['text']?>">
             </td>
             <td width="7%">
-                <input type="radio" name="sh" value="<?=$value['id']?>">
+                <input type="radio" name="sh" value="<?=$value['id']?>" <?=($value['sh']==1)?"checked":"";?>>
             </td>
             <td width="7%">
-                <!-- 因為checkbox是多選所以是陣列形式 -->
-                <input type="checkbox" name="del[]" value="<?=$value['id']?>">
+                <!-- 因為checkbox是多選所以是陣列形式 判斷前台畫面顯示checked顯示: 如果$value['sh']==1 則加上"checked" 屬性 否不加--> 
+                <input type="checkbox" name="del[]" value="<?=$value['id']?>"  >
             </td>
             <td>
                 <input type="button" value="更新圖片">

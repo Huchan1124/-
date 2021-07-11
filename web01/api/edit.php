@@ -18,6 +18,7 @@ foreach ($ids as $key => $id){
   
     // 取出元資料的text 置換成 $texts的資料
     $row['text'] = $texts[$key];
+
     // 顯示功能 如果$_POST['sh']存在且 $_POST['sh']==$id true回傳1(顯示) false回傳0(不顯示)
     $row['sh'] = (isset($_POST['sh']) && $_POST['sh']==$id)?1:0;
 
