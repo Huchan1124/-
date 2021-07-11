@@ -4,7 +4,7 @@
 include_once "../base.php";
 ?>
 
-<h3 class="cent"><?= $adStr['mvim'];?></h3>
+<h3 class="cent">更換動畫圖片</h3>
 <hr>
 <!-- 因為要上傳檔案，要傳比較大的檔案，資料量大的建議使用post -->
 <!-- 另外絕對要記得加上 enctype 才能上傳檔案 multipart/form-data(多媒體資料格式/以表單方式傳送)-->
