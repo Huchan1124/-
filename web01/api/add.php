@@ -13,7 +13,18 @@ if (isset($_FILES['img']['tmp_name'])){
 }
 
 
-$data['text']= $_POST['text'];
+
+// 判斷
+switch($_POST['table']){
+    //如果傳進來的資料是admin
+    case "admin":
+        $data['acc']=$_POST['acc'];
+        $data['pw']= $_POST['pw'];
+    break;
+    default:
+        $data['text']=$_POST['text'];
+}
+
 
 
 $db->save($data);
