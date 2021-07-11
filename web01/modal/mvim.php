@@ -12,7 +12,7 @@ include_once "../base.php";
 <table style="margin: 0 auto;">
     <tr>
         <td><?= $hStr['mvim'];?>:</td>
-        <td><input type="file" name="img" ></td>
+        <td><input type="file" name="img"></td>
     </tr>
 </table>
 <div class="cent">

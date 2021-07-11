@@ -17,7 +17,7 @@
             <tr >
         	<td >
                 <!-- 記得要確認src的路徑位置  -->
-                <img src="./img2/<?=$value['img'];?>" style="width:150px;height:120px;" alt="">
+                <img src="img2/<?=$value['img'];?>" style="width:150px;height:120px;" >
             </td>
             <td >
                 <!-- 判斷前台畫面顯示checked顯示: 如果$value['sh']==1 則加上"checked" 屬性 否不加 -->
@@ -28,7 +28,8 @@
                 <input type="checkbox" name="del[]" value="<?=$value['id']?>"  >
             </td>
             <td>
-                <input type="button" value="更換動畫">
+                <input type="button" value="更換動畫"
+                onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/mvim_update.php?id=<?=$value['id'];?>&#39;)">
             </td>
             <input type="hidden" name="id[]" value="<?=$value['id'];?>">
             </tr>
