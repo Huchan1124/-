@@ -229,6 +229,6 @@ function to($url){
 $Total = new DB("total");
 $Bottom = new DB("bottom");
 $Title = new DB("title");
-
+$Ad = new DB("ad");
 
 ?>

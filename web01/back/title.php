@@ -30,10 +30,11 @@
                 <input type="text" name="text[]" value="<?=$value['text']?>">
             </td>
             <td width="7%">
+                <!-- 判斷前台畫面顯示checked顯示: 如果$value['sh']==1 則加上"checked" 屬性 否不加 -->
                 <input type="radio" name="sh" value="<?=$value['id']?>" <?=($value['sh']==1)?"checked":"";?>>
             </td>
             <td width="7%">
-                <!-- 因為checkbox是多選所以是陣列形式 判斷前台畫面顯示checked顯示: 如果$value['sh']==1 則加上"checked" 屬性 否不加--> 
+                <!-- 因為checkbox是多選所以是陣列形式 --> 
                 <input type="checkbox" name="del[]" value="<?=$value['id']?>"  >
             </td>
             <td>
@@ -50,7 +51,13 @@
      <tbody><tr>
       <td width="200px"><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/<?=$do;?>.php&#39;)" 
       
-      value="<?= $adStr[$do];?>"></td><td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
+      value="<?= $adStr[$do];?>"></td>
+      <td class="cent">
+          <input type="submit" value="修改確定">
+          <input type="reset" value="重置">
+          <!-- 送出table值 -->
+          <input type="hidden" name="table" value="<?=$do;?>">
+        </td>
      </tr>
     </tbody></table>    
 

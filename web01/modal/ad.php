@@ -18,5 +18,7 @@ include_once "../base.php";
 <div class="cent">
     <input type="submit" value="新增" >
     <input type="reset" value="重置">
+     <!-- 送出table值 -->
+     <input type="hidden" name="table" value="ad">
 </div>
 </form>
