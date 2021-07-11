@@ -13,12 +13,14 @@ include_once "../base.php";
         <tr>
             <td><?= $hStr['news'];?></td>
             <td>
-                <textarea name="text" style="width:250px;height:20px;"></textarea>
+                <textarea name="text" style="width:250px;height:120px;"></textarea>
             </td>
         </tr>
     </table>
     <div class="cent">
         <input type="submit" value="新增">
         <input type="reset" value="重置">
+         <!-- 送出table值 -->
+     <input type="hidden" name="table" value="news">
     </div>
 </form>
