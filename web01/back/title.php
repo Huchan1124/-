@@ -34,7 +34,7 @@
             </td>
             <td width="7%">
                 <!-- 因為checkbox是多選所以是陣列形式 -->
-                <input type="checkbox" name="del[]" id="<?=$value['id']?>">
+                <input type="checkbox" name="del[]" value="<?=$value['id']?>">
             </td>
             <td>
                 <input type="button" value="更新圖片">
