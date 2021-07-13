@@ -37,7 +37,8 @@
                 <input type="checkbox" name="del[]" value="<?=$value['id']?>"  >
             </td>
             <td >
-                <input type="button" value="編輯次選單"  >
+                <input type="button" value="編輯次選單" 
+                onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/submenu.php?id=<?=$value['id'];?>&#39;)" >
             </td>
 
 
