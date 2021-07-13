@@ -27,11 +27,18 @@ foreach ($ids as $key => $id){
                $row['acc'] = $_POST['acc'][$key];
                $row['pw'] = $_POST['pw'][$key];
         break;
+        case 'menu';
+                //顯示功能  多選    
+                $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+               $row['text'] = $_POST['text'][$key];
+               //修改href   記得不要拼錯字!!
+               $row['href'] = $_POST['href'][$key];
+        break;
         default:
                //顯示功能  多選    
                $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
                  // 取出元資料的text 置換成 $texts的資料
-                $row['text'] = $texts[$key];
+                $row['text'] = $_POST['text'][$key];
     }
 
     // 更換完畢後儲存回DB

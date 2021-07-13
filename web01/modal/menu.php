@@ -16,11 +16,13 @@ include_once "../base.php";
         </tr>
         <tr>
             <td style="text-align:right;">主選單連結網址:</td>
-            <td><input type="text" name="text"></td>
+            <td><input type="text" name="href"></td>
         </tr>
     </table>
     <div class="cent">
         <input type="submit" value="新增">
         <input type="reset" value="重置">
+         <!-- 送出table值 -->
+     <input type="hidden" name="table" value="menu">
     </div>
 </form>
